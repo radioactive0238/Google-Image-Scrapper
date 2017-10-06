@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('port', (process.env.PORT || 3000));
 
-
+console.log(MONGOLAB_URI);
 //Setting up MongoDB Connection
 
 var uristring =
@@ -62,7 +62,6 @@ function saveImages(searchQuery,cb){
 			
 			if(error){
 				console.log("Error getting images");
-				response.send('2');
 			}
 			else{
 				var $ = cheerio.load(body);
@@ -78,10 +77,10 @@ function saveImages(searchQuery,cb){
 								
 								src=$(str).attr('src');
 								jimp.read(src, function (err, image) {
-									if(err){ console.log("Code 4: Jimp read Error"); res.send('3');}
+									if(err) console.log("Code 3: Jimp read Error");
 									else{
 										image.greyscale().getBase64(jimp.AUTO,function(err, imageData) {
-											if(err) {console.log("Code 4: Jimp Convert Error"); res.send('4');}
+											if(err) console.log("Code 4: Jimp Convert Error");
 											
 											imageData=imageData.replace(/^data:image\/jpeg;base64,/, "");
 											
@@ -91,7 +90,6 @@ function saveImages(searchQuery,cb){
 											s3.putObject(params, function(err, data) {
 												if (err) {
 													console.log("Code 5: AWS upload Error");
-													res.send('5');
 												}
 												else {
 													console.log("Successfully uploaded file");
