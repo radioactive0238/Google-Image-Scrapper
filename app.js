@@ -88,7 +88,7 @@ function saveImages(searchQuery,cb){
 											
 											s3.putObject(params, function(err, data) {
 												if (err) {
-													console.log("Code 5: AWS upload Error");
+													console.log("Code 5: AWS upload Error"+err);
 												}
 												else {
 													console.log("Successfully uploaded file");
