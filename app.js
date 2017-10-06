@@ -22,7 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('port', (process.env.PORT || 3000));
 
-console.log(MONGOLAB_URI);
 //Setting up MongoDB Connection
 
 var uristring =
