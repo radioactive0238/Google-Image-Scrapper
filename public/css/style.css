@@ -1,0 +1,18 @@
+.search-form  {
+	position: absolute;
+	width:50%;
+	top: 50%; left: 50%;
+	transform: translate(-50%,-50%);
+    position: relative;
+}
+.responseMsg {
+	left: 17%;
+	/*background-color: #8ee48e;*/
+	margin-top:12px;
+	color:  white;
+	border-radius: 25px;
+	font-size: 20px;
+}
+	
+
+

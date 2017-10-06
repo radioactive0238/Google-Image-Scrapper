@@ -1,0 +1,32 @@
+<html>
+<head>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/angular.min.js"></script>
+	<script src="/js/client.js"></script>
+	<script src="js/loading-bar.min.js"></script>
+	<script src="/js/searchController.js"></script>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/loading-bar.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+</head>
+<body  ng-app="searchApp" ng-controller="searchController">
+		<div class="row search-form">
+			<div class="col-md-6">
+				<input  type="text" class="form-control" placeholder="Enter your query" ng-model="searchTerm">
+			</div>
+			
+			<div class="col-md-3">
+				<button type="button" class="btn btn-primary" style="width:100%" ng-click="searchB()">Search</button>
+			</div>
+			
+			<div class="col-md-3">
+				<a href="/history"><button type="button" class="btn btn-success col-xs-8 history-button" style="width:100%">Previous Queries</button></a>
+			</div>
+			<div class="col-md-8 responseMsg" >
+			
+			</div>
+
+        </div>
+</body>
