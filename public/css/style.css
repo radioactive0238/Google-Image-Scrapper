@@ -6,8 +6,8 @@
     position: relative;
 }
 .responseMsg {
-	left: 17%;
-	/*background-color: #8ee48e;*/
+	margin: 5px 15%;
+	display:inline-block;
 	margin-top:12px;
 	color:  white;
 	border-radius: 25px;

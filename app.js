@@ -61,6 +61,7 @@ function saveImages(searchQuery,cb){
 			
 			if(error){
 				console.log("Error getting images");
+				cb();
 			}
 			else{
 				var $ = cheerio.load(body);
@@ -76,7 +77,7 @@ function saveImages(searchQuery,cb){
 								
 								src=$(str).attr('src');
 								jimp.read(src, function (err, image) {
-									if(err) console.log("Code 3: Jimp read Error");
+									if(err)  console.log("Code 3: Jimp read Error");
 									else{
 										image.greyscale().getBase64(jimp.AUTO,function(err, imageData) {
 											if(err) console.log("Code 4: Jimp Convert Error");
@@ -149,19 +150,22 @@ app.post('/search',function(req,res){
 	var now = new Date();
 	var timestamp=  now.getDate() + "-" + (now.getMonth()+1) + "-" + now.getFullYear() + "," + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
 
-	saveImages(searchTerm,function(documentId){
-
-		var queryInstance = new queries({ _id : documentId, queryTime : timestamp , queryTerm : searchTerm });
-		queryInstance.save(function (err) {
-								if (err){ 
-									console.log("Error inserting in DB" + err);
-									res.send("1");
-								}
-								else {
-									console.log("Suceess inserting in DB");
-									res.send("0");
-								}
-		});
+	saveImages(searchTerm,function(result){
+		if(!result)
+			res.send("2");
+		else{
+			var queryInstance = new queries({ _id : documentId, queryTime : timestamp , queryTerm : searchTerm });
+			queryInstance.save(function (err) {
+									if (err){ 
+										console.log("Error inserting in DB" + err);
+										res.send("1");
+									}
+									else {
+										console.log("Suceess inserting in DB");
+										res.send("0");
+									}
+			});
+		}
 	});
 });
 
